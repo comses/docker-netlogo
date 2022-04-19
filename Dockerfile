@@ -1,8 +1,8 @@
-FROM openjdk:8-jdk
+FROM openjdk:11-bullseye
 LABEL maintainer="Allen Lee <allen.lee@asu.edu>"
 
 ARG NETLOGO_HOME=/opt/netlogo
-ARG NETLOGO_VERSION=6.0.4
+ARG NETLOGO_VERSION=6.2.2
 
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
@@ -11,5 +11,5 @@ ENV LC_ALL=C.UTF-8 \
 ENV NETLOGO_URL=https://ccl.northwestern.edu/netlogo/$NETLOGO_VERSION/$NETLOGO_TARBALL
 
 WORKDIR /opt
-RUN wget $NETLOGO_URL && tar xzf $NETLOGO_TARBALL && ln -sf "NetLogo $NETLOGO_VERSION" netlogo \
+RUN wget -q $NETLOGO_URL && tar xzf $NETLOGO_TARBALL && ln -sf "NetLogo $NETLOGO_VERSION" netlogo \
     && rm -f $NETLOGO_TARBALL
